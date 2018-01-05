@@ -143,6 +143,23 @@ In this configuration, pins 15 to 18 are used as outputs while pins 19 to 22 are
 - The signal at the input pin that is configured to generate hardware interrupts (```hwirq``` set to 1) **MUST** also be connected to the CH341A **INT** pin 7.
 - If there is no input that should generate hardware interrupts, set ```hwirq``` to 0 for all entries.
 
+If you want to use 6 GPIOs in output mode, you have to configure it with:
+
+```
+struct ch341_pin_config ch341_board_config[CH341_GPIO_NUM_PINS] =
+{
+    // pin  GPIO mode           GPIO name   hwirq
+    {   15, CH341_PIN_MODE_OUT , "gpio0"    , 0 }, // used as output
+    {   16, CH341_PIN_MODE_OUT , "gpio1"    , 0 }, // used as output
+    {   17, CH341_PIN_MODE_OUT , "gpio2"    , 0 }, // used as output
+    {   18, CH341_PIN_MODE_OUT , "gpio3"    , 0 }, // used as output
+    {   19, CH341_PIN_MODE_OUT , "gpio4"    , 1 }, // used as output with hardware IRQ
+    {   20, CH341_PIN_MODE_OUT , "gpio5"    , 0 }, // used as ouput
+    {   21, CH341_PIN_MODE_IN  , "gpio6"    , 0 }, // used as input
+    {   22, CH341_PIN_MODE_IN  , "gpio7"    , 0 }  // used as input
+};
+```
+
 ### Configuration of GPIO polling rate
 
 GPIO inputs are polled periodically by a kernel thread. GPIO polling rate defines the **rate at which the kernel thread polls the GPIO inputs** and determines whether to generate **software interrupts**. That is, it defines the maximum rate at which changes at GPIO inputs can be recognized at all and software interrupts can be generated. 
