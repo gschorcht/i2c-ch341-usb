@@ -1,3 +1,4 @@
+[![noswpatv3](http://zoobab.wdfiles.com/local--files/start/noupcv3.jpg)](https://ffii.org/donate-now-to-save-europe-from-software-patents-says-ffii/)
 # CH341A USB to I2C and GPIO Linux kernel driver
 
 The driver can be used with **CH341A** USB to UART/I2C/SPI adapter boards to connect I2C devices to a Linux host.
